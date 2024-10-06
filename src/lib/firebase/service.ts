@@ -6,9 +6,10 @@ const firestore = getFirestore(app);
 const retrieveData = async (collectionName: string) => {
   const snapshot = await getDocs(collection(firestore, collectionName));
 
-  const data = snapshot.docs.map((doc) => ({ id: doc.id, ...doc.data() }));
+  const data = snapshot.docs.map((doc) => {
+    return { id: doc.id, ...doc.data() };
+  });
 
-  console.log(data);
   return data;
 };
 

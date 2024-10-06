@@ -1,36 +1,25 @@
-import Head from "next/head";
+import ProductPage from "@/views/Products";
 import { useEffect, useState } from "react";
+import useSWR from "swr";
 
-type ProductType = {
-  id: string;
-  name: string;
-  size: string;
-  price: number;
-};
+const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
-const ProductPage = () => {
-  const [products, setProducts] = useState([]);
-  useEffect(() => {
-    fetch("/api/products")
-      .then((data) => data.json())
-      .then((response) => setProducts(response?.products))
-      .catch((err) => console.log(err));
-  }, []);
+const Product = () => {
+  const { data, error, isLoading } = useSWR("/api/products", fetcher);
+  // const { products } = data;
+  // const [products, setProducts] = useState([]);
+  // useEffect(() => {
+  //   fetch("/api/products")
+  //     .then((data) => data.json())
+  //     .then((response) => setProducts(response?.products))
+  //     .catch((err) => console.log(err));
+  // }, []);
 
   return (
     <>
-      <Head>
-        <title>Products</title>
-      </Head>
-      {products.map((product: ProductType) => (
-        <div className="card" key={product.id}>
-          <h4>{product.name}</h4>
-          <h4>{product.price}</h4>
-          <h4>{product.size}</h4>
-        </div>
-      ))}
+      <ProductPage products={!isLoading ? data.products : []} />
     </>
   );
 };
 
-export default ProductPage;
+export default Product;
