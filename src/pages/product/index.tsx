@@ -1,3 +1,4 @@
+import Head from "next/head";
 import { useRouter } from "next/router";
 import { useState } from "react";
 
@@ -10,6 +11,9 @@ const ProductPage = () => {
 
   return (
     <>
+      <Head>
+        <title>Products</title>
+      </Head>
       <h2>Hello products page</h2>
     </>
   );

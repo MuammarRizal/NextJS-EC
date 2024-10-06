@@ -9,12 +9,13 @@ type AppShell = {
 
 const AppShell = ({ children }: AppShell) => {
   const { pathname } = useRouter();
-  const disabledNavbar = ["/auth/login", "/auth/register"];
+  const disabledNavbar = ["/auth/login", "/auth/register", "/404"];
+
   return (
     <>
       {!disabledNavbar.includes(pathname) && <Navbar />}
       {children}
-      <Footer />
+      {!disabledNavbar.includes(pathname) && <Footer />}
     </>
   );
 };
