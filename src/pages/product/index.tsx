@@ -1,20 +1,34 @@
 import Head from "next/head";
-import { useRouter } from "next/router";
-import { useState } from "react";
+import { useEffect, useState } from "react";
+
+type ProductType = {
+  id: string;
+  name: string;
+  size: string;
+  price: number;
+};
 
 const ProductPage = () => {
-  //   const [isLogin, setIsLogin] = useState(false);
-  //   const { push } = useRouter();
-  //   if (!isLogin) {
-  //     push("/auth/login");
-  //   }
+  const [products, setProducts] = useState([]);
+  useEffect(() => {
+    fetch("/api/products")
+      .then((data) => data.json())
+      .then((response) => setProducts(response?.products))
+      .catch((err) => console.log(err));
+  }, []);
 
   return (
     <>
       <Head>
         <title>Products</title>
       </Head>
-      <h2>Hello products page</h2>
+      {products.map((product: ProductType) => (
+        <div className="card" key={product.id}>
+          <h4>{product.name}</h4>
+          <h4>{product.price}</h4>
+          <h4>{product.size}</h4>
+        </div>
+      ))}
     </>
   );
 };
