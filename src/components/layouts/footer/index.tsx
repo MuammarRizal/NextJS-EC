@@ -1,9 +1,6 @@
-import React from "react";
-
+import styleFooter from "./Footer.module.css";
 const Footer = () => (
-  <footer className="footer w-full text-center bg-slate-400 p-2 text-slate-900 mt-10">
-    @MuammarRizal
-  </footer>
+  <footer className={styleFooter.footer}>@MuammarRizal</footer>
 );
 
 export default Footer;
