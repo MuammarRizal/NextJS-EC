@@ -3,6 +3,7 @@ import StylesProducts from "@/views/Products/Products.module.css";
 
 import Loading from "@/components/layouts/Loading";
 import Image from "next/image";
+import Link from "next/link";
 
 type ProductType = {
   id: string;
@@ -22,10 +23,12 @@ const ProductPage = ({ products }: { products: ProductType[] }) => {
         {products.length > 0 ? (
           products.map((product: ProductType) => (
             <div className={StylesProducts.card} key={product.id}>
-              <Image src={product.image} alt={product.name} />
-              <h4>{product.name}</h4>
-              <h4>{product.price}</h4>
-              <h4>{product.category}</h4>
+              <Link href={`/product/${product.id}`}>
+                <img src={product.image} alt={product.name} />
+                <h4>{product.name}</h4>
+                <h4>{product.price}</h4>
+                <h4>{product.category}</h4>
+              </Link>
             </div>
           ))
         ) : (

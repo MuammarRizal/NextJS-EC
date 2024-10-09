@@ -5,11 +5,7 @@ export default function NotFound() {
   return (
     <div className="min-h-screen flex flex-col items-center justify-center bg-gray-100 text-center">
       <h1 className="text-9xl font-bold text-gray-800">404</h1>
-      <Image
-        src="./404-notfound.gif"
-        alt="Not Found"
-        className={styles404.img}
-      />
+      <img src="./404-notfound.gif" alt="Not Found" className={styles404.img} />
       <h2 className="text-4xl font-semibold text-gray-600 mt-4">
         Page Not Found
       </h2>
