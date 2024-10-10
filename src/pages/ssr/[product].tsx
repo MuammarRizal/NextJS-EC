@@ -12,7 +12,8 @@ const ServerSideRendering = ({ data }: { data: DataProduct }) => {
 
 export default ServerSideRendering;
 
-export async function getServerSideProps() {
+export async function getServerSideProps({ params }: any) {
+  console.log(params);
   const response = await fetch("http://localhost:3000/api/products");
   const data = await response.json();
   return {

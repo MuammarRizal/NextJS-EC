@@ -19,7 +19,7 @@ const Product = () => {
 
   return (
     <>
-      <ProductPage products={!isLoading ? data.products : []} />
+      <ProductPage products={data ? data.products : []} />
     </>
   );
 };

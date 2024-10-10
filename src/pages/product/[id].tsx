@@ -1,6 +1,6 @@
 import { useRouter } from "next/router";
 import useSWR from "swr";
-import NameProduct from "./Name";
+import DetailProduct from "@/views/DetailProduct";
 const fetcher = (url: string) => fetch(url).then((res) => res.json());
 
 const ProductParams = () => {
@@ -14,7 +14,7 @@ const ProductParams = () => {
     <>
       <div>
         Product : {query.id}
-        <NameProduct name={isLoading ? "Jange" : data.products.name} />
+        <DetailProduct product={isLoading ? {} : data.products} />
       </div>
     </>
   );
